@@ -1,31 +1,207 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>World AI Leaders Report</title>
+  <title>World Top Leaders</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f8f9fa; color: #222; }
-    h1 { color: #1a73e8; }
-    .updated { color: #666; font-size: 0.95rem; margin-bottom: 24px; }
-    table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
-    th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid #eee; }
-    th { background: #1a73e8; color: white; font-weight: 600; }
-    tr:hover { background: #f1f5f9; }
-    .score { font-weight: 600; }
-    footer { margin-top: 40px; text-align: center; color: #888; font-size: 0.9rem; }
+    :root {
+      --primary: #1F4E79;
+      --accent: #2E86AB;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1a1a2e;
+      --muted: #6b7280;
+      --gold: #f9e79f;
+      --silver: #d5d8dc;
+      --bronze: #f5cba7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding: 24px 16px 60px;
+    }
+    .container { max-width: 1280px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 28px 20px;
+      background: linear-gradient(135deg, #1F4E79 0%, #2E86AB 100%);
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(31,78,121,0.25);
+    }
+    header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.02em; }
+    header .subtitle { margin-top: 8px; opacity: 0.9; font-size: 1.05rem; }
+    header .date { margin-top: 12px; font-size: 0.95rem; opacity: 0.8; }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .meta a, .meta span {
+      background: var(--card);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: var(--primary);
+      text-decoration: none;
+      border: 1px solid #dbeafe;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .meta a:hover { background: #eff6ff; }
+    .note {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+      color: #92400e;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+    }
+    th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      padding: 14px 12px;
+      text-align: left;
+      font-size: 0.85rem;
+      position: sticky;
+      top: 0;
+      white-space: nowrap;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #eef2f7;
+      font-size: 0.9rem;
+    }
+    tr:hover td { background: #f0f7ff; }
+    tr.rank-1 td { background: var(--gold); }
+    tr.rank-2 td { background: var(--silver); }
+    tr.rank-3 td { background: var(--bronze); }
+    .rank { font-weight: 700; text-align: center; width: 48px; }
+    .score { text-align: center; font-variant-numeric: tabular-nums; font-weight: 500; }
+    .avg { font-weight: 700; color: var(--primary); text-align: center; }
+    .name { font-weight: 600; }
+    .org { color: var(--muted); font-size: 0.85rem; }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--accent); }
   </style>
 </head>
 <body>
-  <h1>World AI Leaders Report</h1>
-  <p class="updated">Last updated: (automation will update this daily)</p>
-  <p>This page is automatically updated every morning with the latest ranking of the top 50 AI leaders worldwide.</p>
-  <p>Detailed Excel and Word reports are available in the <a href="https://drive.google.com/drive/folders/1dSR2StutFYuN7imgH3RV40I8A0KdbJZm" target="_blank">World Leaders Google Drive folder</a>.</p>
-  <div id="content">
-    <p>Ranking data will appear here after the first automation run.</p>
+  <div class="container">
+    <header>
+      <h1>World Top Leaders</h1>
+      <div class="subtitle">Global Top 50 AI Leaders Ranking</div>
+      <div class="date">Updated: 2026-09-24</div>
+    </header>
+
+    <div class="meta">
+      <a href="https://drive.google.com/drive/folders/1dSR2StutFYuN7imgH3RV40I8A0KdbJZm" target="_blank">Google Drive Folder</a>
+      <a href="https://docs.google.com/spreadsheets/d/1iXim5nxGYLp8gk7_Y-dbO-BWZQDMFc3vKLoN00XkLE8/edit" target="_blank">AI Leaders Rankings Sheet</a>
+      <span>Scores: Research · Business · AGI · Wealth</span>
+    </div>
+
+    <div class="note">
+      Rank = arithmetic mean of four 0–100 scores. Tie-break order: Business &gt; Research &gt; AGI &gt; Wealth.
+      Previous Rank is “-” (first ranking in series). All data from public sources only.
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Prev</th>
+            <th>Name</th>
+            <th>Organization</th>
+            <th>Research</th>
+            <th>Business</th>
+            <th>AGI</th>
+            <th>Wealth</th>
+            <th>Average</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="rank-1"><td class="rank">1</td><td class="score">-</td><td><span class="name">Dario Amodei</span><br><span class="org">Anthropic — Co-founder &amp; CEO</span></td><td>Anthropic</td><td class="score">90</td><td class="score">97</td><td class="score">98</td><td class="score">78</td><td class="avg">90.75</td></tr>
+          <tr class="rank-2"><td class="rank">2</td><td class="score">-</td><td><span class="name">Elon Musk</span><br><span class="org">xAI / SpaceX / Tesla — Founder &amp; CEO</span></td><td>xAI / SpaceX</td><td class="score">60</td><td class="score">98</td><td class="score">95</td><td class="score">100</td><td class="avg">88.25</td></tr>
+          <tr class="rank-3"><td class="rank">3</td><td class="score">-</td><td><span class="name">Jensen Huang</span><br><span class="org">NVIDIA — Founder, CEO &amp; President</span></td><td>NVIDIA</td><td class="score">78</td><td class="score">100</td><td class="score">72</td><td class="score">96</td><td class="avg">86.50</td></tr>
+          <tr><td class="rank">4</td><td class="score">-</td><td><span class="name">Demis Hassabis</span><br><span class="org">Google DeepMind — CEO &amp; Co-founder</span></td><td>Google DeepMind</td><td class="score">99</td><td class="score">88</td><td class="score">97</td><td class="score">40</td><td class="avg">81.00</td></tr>
+          <tr><td class="rank">5</td><td class="score">-</td><td><span class="name">Sam Altman</span><br><span class="org">OpenAI — CEO &amp; Co-founder</span></td><td>OpenAI</td><td class="score">70</td><td class="score">99</td><td class="score">96</td><td class="score">48</td><td class="avg">78.25</td></tr>
+          <tr><td class="rank">6</td><td class="score">-</td><td><span class="name">Mark Zuckerberg</span><br><span class="org">Meta — Founder, Chairman &amp; CEO</span></td><td>Meta</td><td class="score">65</td><td class="score">95</td><td class="score">85</td><td class="score">92</td><td class="avg">84.25</td></tr>
+          <tr><td class="rank">7</td><td class="score">-</td><td><span class="name">Ilya Sutskever</span><br><span class="org">Safe Superintelligence — Co-founder &amp; CEO</span></td><td>SSI</td><td class="score">95</td><td class="score">75</td><td class="score">98</td><td class="score">65</td><td class="avg">83.25</td></tr>
+          <tr><td class="rank">8</td><td class="score">-</td><td><span class="name">Greg Brockman</span><br><span class="org">OpenAI — President &amp; Co-founder</span></td><td>OpenAI</td><td class="score">75</td><td class="score">90</td><td class="score">88</td><td class="score">85</td><td class="avg">84.50</td></tr>
+          <tr><td class="rank">9</td><td class="score">-</td><td><span class="name">Daniela Amodei</span><br><span class="org">Anthropic — President &amp; Co-founder</span></td><td>Anthropic</td><td class="score">80</td><td class="score">90</td><td class="score">90</td><td class="score">75</td><td class="avg">83.75</td></tr>
+          <tr><td class="rank">10</td><td class="score">-</td><td><span class="name">Yann LeCun</span><br><span class="org">AMI Labs / NYU — Founder; Professor</span></td><td>AMI Labs</td><td class="score">96</td><td class="score">70</td><td class="score">88</td><td class="score">50</td><td class="avg">76.00</td></tr>
+          <tr><td class="rank">11</td><td class="score">-</td><td><span class="name">Geoffrey Hinton</span><br><span class="org">University of Toronto — Professor Emeritus</span></td><td>U of Toronto</td><td class="score">100</td><td class="score">40</td><td class="score">90</td><td class="score">25</td><td class="avg">63.75</td></tr>
+          <tr><td class="rank">12</td><td class="score">-</td><td><span class="name">Yoshua Bengio</span><br><span class="org">Mila / UdeM — Scientific Director</span></td><td>Mila</td><td class="score">98</td><td class="score">45</td><td class="score">92</td><td class="score">28</td><td class="avg">65.75</td></tr>
+          <tr><td class="rank">13</td><td class="score">-</td><td><span class="name">Liang Wenfeng</span><br><span class="org">DeepSeek — Founder &amp; CEO</span></td><td>DeepSeek</td><td class="score">85</td><td class="score">88</td><td class="score">80</td><td class="score">70</td><td class="avg">80.75</td></tr>
+          <tr><td class="rank">14</td><td class="score">-</td><td><span class="name">Mustafa Suleyman</span><br><span class="org">Microsoft AI — CEO</span></td><td>Microsoft AI</td><td class="score">70</td><td class="score">85</td><td class="score">85</td><td class="score">55</td><td class="avg">73.75</td></tr>
+          <tr><td class="rank">15</td><td class="score">-</td><td><span class="name">Fei-Fei Li</span><br><span class="org">World Labs / Stanford — Co-founder &amp; CEO</span></td><td>World Labs</td><td class="score">92</td><td class="score">65</td><td class="score">75</td><td class="score">45</td><td class="avg">69.25</td></tr>
+          <tr><td class="rank">16</td><td class="score">-</td><td><span class="name">Jeff Bezos</span><br><span class="org">Amazon / Prometheus — Founder; Co-CEO</span></td><td>Amazon</td><td class="score">50</td><td class="score">92</td><td class="score">70</td><td class="score">98</td><td class="avg">77.50</td></tr>
+          <tr><td class="rank">17</td><td class="score">-</td><td><span class="name">Larry Ellison</span><br><span class="org">Oracle — CTO &amp; Executive Chairman</span></td><td>Oracle</td><td class="score">45</td><td class="score">90</td><td class="score">60</td><td class="score">94</td><td class="avg">72.25</td></tr>
+          <tr><td class="rank">18</td><td class="score">-</td><td><span class="name">Satya Nadella</span><br><span class="org">Microsoft — Chairman &amp; CEO</span></td><td>Microsoft</td><td class="score">55</td><td class="score">96</td><td class="score">80</td><td class="score">45</td><td class="avg">69.00</td></tr>
+          <tr><td class="rank">19</td><td class="score">-</td><td><span class="name">Sundar Pichai</span><br><span class="org">Alphabet / Google — CEO</span></td><td>Alphabet</td><td class="score">60</td><td class="score">94</td><td class="score">82</td><td class="score">42</td><td class="avg">69.50</td></tr>
+          <tr><td class="rank">20</td><td class="score">-</td><td><span class="name">Andrew Ng</span><br><span class="org">DeepLearning.AI — Founder</span></td><td>DeepLearning.AI</td><td class="score">88</td><td class="score">70</td><td class="score">65</td><td class="score">40</td><td class="avg">65.75</td></tr>
+          <tr><td class="rank">21</td><td class="score">-</td><td><span class="name">Alexandr Wang</span><br><span class="org">Meta / Scale AI — AI Lead</span></td><td>Meta / Scale</td><td class="score">70</td><td class="score">85</td><td class="score">78</td><td class="score">70</td><td class="avg">75.75</td></tr>
+          <tr><td class="rank">22</td><td class="score">-</td><td><span class="name">Shane Legg</span><br><span class="org">Google DeepMind — Chief AGI Scientist</span></td><td>DeepMind</td><td class="score">90</td><td class="score">60</td><td class="score">95</td><td class="score">35</td><td class="avg">70.00</td></tr>
+          <tr><td class="rank">23</td><td class="score">-</td><td><span class="name">Aravind Srinivas</span><br><span class="org">Perplexity AI — Co-founder &amp; CEO</span></td><td>Perplexity</td><td class="score">65</td><td class="score">82</td><td class="score">70</td><td class="score">60</td><td class="avg">69.25</td></tr>
+          <tr><td class="rank">24</td><td class="score">-</td><td><span class="name">Mark Chen</span><br><span class="org">OpenAI — Chief Research Officer</span></td><td>OpenAI</td><td class="score">92</td><td class="score">75</td><td class="score">90</td><td class="score">55</td><td class="avg">78.00</td></tr>
+          <tr><td class="rank">25</td><td class="score">-</td><td><span class="name">Kai-Fu Lee</span><br><span class="org">Sinovation Ventures — Chairman &amp; CEO</span></td><td>Sinovation</td><td class="score">75</td><td class="score">80</td><td class="score">65</td><td class="score">55</td><td class="avg">68.75</td></tr>
+          <tr><td class="rank">26</td><td class="score">-</td><td><span class="name">Andrej Karpathy</span><br><span class="org">Anthropic — Pre-training Research</span></td><td>Anthropic</td><td class="score">88</td><td class="score">60</td><td class="score">85</td><td class="score">50</td><td class="avg">70.75</td></tr>
+          <tr><td class="rank">27</td><td class="score">-</td><td><span class="name">John Jumper</span><br><span class="org">Google DeepMind — Director</span></td><td>DeepMind</td><td class="score">95</td><td class="score">50</td><td class="score">70</td><td class="score">30</td><td class="avg">61.25</td></tr>
+          <tr><td class="rank">28</td><td class="score">-</td><td><span class="name">Noam Shazeer</span><br><span class="org">Character.AI / Google — Co-founder</span></td><td>Character.AI</td><td class="score">90</td><td class="score">70</td><td class="score">75</td><td class="score">60</td><td class="avg">73.75</td></tr>
+          <tr><td class="rank">29</td><td class="score">-</td><td><span class="name">Arthur Mensch</span><br><span class="org">Mistral AI — CEO &amp; Co-founder</span></td><td>Mistral AI</td><td class="score">80</td><td class="score">78</td><td class="score">75</td><td class="score">55</td><td class="avg">72.00</td></tr>
+          <tr><td class="rank">30</td><td class="score">-</td><td><span class="name">Guillaume Lample</span><br><span class="org">Mistral AI — Co-founder</span></td><td>Mistral AI</td><td class="score">85</td><td class="score">70</td><td class="score">75</td><td class="score">55</td><td class="avg">71.25</td></tr>
+          <tr><td class="rank">31</td><td class="score">-</td><td><span class="name">Timothée Lacroix</span><br><span class="org">Mistral AI — Co-founder</span></td><td>Mistral AI</td><td class="score">82</td><td class="score">70</td><td class="score">72</td><td class="score">55</td><td class="avg">69.75</td></tr>
+          <tr><td class="rank">32</td><td class="score">-</td><td><span class="name">Emad Mostaque</span><br><span class="org">Stability AI (ex) — Founder</span></td><td>Stability AI</td><td class="score">70</td><td class="score">65</td><td class="score">60</td><td class="score">40</td><td class="avg">58.75</td></tr>
+          <tr><td class="rank">33</td><td class="score">-</td><td><span class="name">Alec Radford</span><br><span class="org">OpenAI — Researcher</span></td><td>OpenAI</td><td class="score">92</td><td class="score">55</td><td class="score">80</td><td class="score">45</td><td class="avg">68.00</td></tr>
+          <tr><td class="rank">34</td><td class="score">-</td><td><span class="name">Oriol Vinyals</span><br><span class="org">Google DeepMind — Research Scientist</span></td><td>DeepMind</td><td class="score">90</td><td class="score">50</td><td class="score">80</td><td class="score">30</td><td class="avg">62.50</td></tr>
+          <tr><td class="rank">35</td><td class="score">-</td><td><span class="name">Raia Hadsell</span><br><span class="org">Google DeepMind — VP Research</span></td><td>DeepMind</td><td class="score">85</td><td class="score">55</td><td class="score">78</td><td class="score">30</td><td class="avg">62.00</td></tr>
+          <tr><td class="rank">36</td><td class="score">-</td><td><span class="name">Joelle Pineau</span><br><span class="org">Meta / McGill — AI Research</span></td><td>Meta</td><td class="score">85</td><td class="score">55</td><td class="score">70</td><td class="score">25</td><td class="avg">58.75</td></tr>
+          <tr><td class="rank">37</td><td class="score">-</td><td><span class="name">Anima Anandkumar</span><br><span class="org">Caltech / NVIDIA — Professor</span></td><td>Caltech / NVIDIA</td><td class="score">88</td><td class="score">60</td><td class="score">65</td><td class="score">30</td><td class="avg">60.75</td></tr>
+          <tr><td class="rank">38</td><td class="score">-</td><td><span class="name">Chris Manning</span><br><span class="org">Stanford — Professor</span></td><td>Stanford</td><td class="score">90</td><td class="score">40</td><td class="score">60</td><td class="score">20</td><td class="avg">52.50</td></tr>
+          <tr><td class="rank">39</td><td class="score">-</td><td><span class="name">Percy Liang</span><br><span class="org">Stanford / Together AI — Professor</span></td><td>Stanford</td><td class="score">88</td><td class="score">65</td><td class="score">70</td><td class="score">40</td><td class="avg">65.75</td></tr>
+          <tr><td class="rank">40</td><td class="score">-</td><td><span class="name">Ion Stoica</span><br><span class="org">UC Berkeley / Databricks — Co-founder</span></td><td>Databricks</td><td class="score">85</td><td class="score">80</td><td class="score">55</td><td class="score">70</td><td class="avg">72.50</td></tr>
+          <tr><td class="rank">41</td><td class="score">-</td><td><span class="name">Ali Ghodsi</span><br><span class="org">Databricks — Co-founder &amp; CEO</span></td><td>Databricks</td><td class="score">70</td><td class="score">88</td><td class="score">55</td><td class="score">75</td><td class="avg">72.00</td></tr>
+          <tr><td class="rank">42</td><td class="score">-</td><td><span class="name">Jonathan Ross</span><br><span class="org">NVIDIA / Groq — Chief Software Architect</span></td><td>NVIDIA</td><td class="score">75</td><td class="score">80</td><td class="score">60</td><td class="score">65</td><td class="avg">70.00</td></tr>
+          <tr><td class="rank">43</td><td class="score">-</td><td><span class="name">Andrew Feldman</span><br><span class="org">Cerebras — Co-founder &amp; CEO</span></td><td>Cerebras</td><td class="score">70</td><td class="score">75</td><td class="score">60</td><td class="score">50</td><td class="avg">63.75</td></tr>
+          <tr><td class="rank">44</td><td class="score">-</td><td><span class="name">Michael Intrator</span><br><span class="org">CoreWeave — Co-founder &amp; CEO</span></td><td>CoreWeave</td><td class="score">50</td><td class="score">85</td><td class="score">55</td><td class="score">70</td><td class="avg">65.00</td></tr>
+          <tr><td class="rank">45</td><td class="score">-</td><td><span class="name">Sarah Friar</span><br><span class="org">OpenAI — CFO</span></td><td>OpenAI</td><td class="score">40</td><td class="score">90</td><td class="score">60</td><td class="score">50</td><td class="avg">60.00</td></tr>
+          <tr><td class="rank">46</td><td class="score">-</td><td><span class="name">Brad Gerstner</span><br><span class="org">Altimeter Capital — Founder &amp; CEO</span></td><td>Altimeter</td><td class="score">40</td><td class="score">88</td><td class="score">55</td><td class="score">80</td><td class="avg">65.75</td></tr>
+          <tr><td class="rank">47</td><td class="score">-</td><td><span class="name">Reid Hoffman</span><br><span class="org">Greylock / Inflection — Partner</span></td><td>Greylock</td><td class="score">55</td><td class="score">85</td><td class="score">70</td><td class="score">75</td><td class="avg">71.25</td></tr>
+          <tr><td class="rank">48</td><td class="score">-</td><td><span class="name">Eric Schmidt</span><br><span class="org">Former Google — Investor &amp; Advisor</span></td><td>Independent</td><td class="score">50</td><td class="score">80</td><td class="score">65</td><td class="score">90</td><td class="avg">71.25</td></tr>
+          <tr><td class="rank">49</td><td class="score">-</td><td><span class="name">Bill Dally</span><br><span class="org">NVIDIA — Chief Scientist</span></td><td>NVIDIA</td><td class="score">90</td><td class="score">70</td><td class="score">50</td><td class="score">40</td><td class="avg">62.50</td></tr>
+          <tr><td class="rank">50</td><td class="score">-</td><td><span class="name">Stuart Russell</span><br><span class="org">UC Berkeley — Professor</span></td><td>UC Berkeley</td><td class="score">92</td><td class="score">35</td><td class="score">88</td><td class="score">20</td><td class="avg">58.75</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      <p>World Top Leaders · Data compiled from public sources only (TIME100 AI, Observer, Forbes, company filings, academic records)</p>
+      <p style="margin-top:8px"><a href="https://world-top-leaders.netlify.app">https://world-top-leaders.netlify.app</a> · Daily update 2026-09-24</p>
+    </footer>
   </div>
-  <footer>
-    Generated automatically by Grok Automations · Data based on public information
-  </footer>
 </body>
 </html>
